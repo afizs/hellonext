@@ -1,47 +1,78 @@
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Head from '../components/head';
-import Nav from '../components/nav';
-import "../styles/main.scss";
+import React, { Component } from "react";
+import { Container, Row, Col } from "reactstrap";
+import Typed from 'react-typed';
+import BaseLayout from "../components/layouts/BaseLayout"
 
-
-const Home = () => {
-  const [date, setDate] = useState(null);
-
-  useEffect(() => {
-    async function getDate() {
-      const res = await fetch('/api/date');
-      const newDate = await res.json();
-      setDate(newDate);
+export class index extends Component {
+  
+  constructor(props){
+    super(props); 
+    this.roles = ['Python Developer', 'React Novice', 'Tech Lover'];
     }
-    getDate();
-  }, []);
 
-  return (
-    <div>
-      <Head title="Home" />
-      <Nav />
+  render() {
+    return (
+      <BaseLayout className="cover">
+        <div className="main-section">
+          <div className="background-image">
+            <img src="/images/background-index.png" />
+          </div>
 
-      <div className="hero">
-        <h1 className="title">Welcome to Next!</h1>
-        <p className="description">
-          To get started, edit the <code>pages/index.js</code> or{' '}
-          <code>pages/api/date.js</code> files, then save to reload.
-        </p>
+          <Container>
+            <Row>
+              <Col md="6">
+                <div className="hero-section">
+                  <div className={`flipper`}>
+                    <div className="back">
+                      <div className="hero-section-content">
+                        <h2> Full Stack Web Developer </h2>
+                        <div className="hero-section-content-intro">
+                          Have a look at my portfolio and job history.
+                        </div>
+                      </div>
+                      <img
+                        className="image"
+                        src="/images/section-1.png"
+                      />
+                      <div className="shadow-custom">
+                        <div className="shadow-inner"> </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Col>
+              <Col md="6" className="hero-welcome-wrapper">
+                <div className="hero-welcome-text">
+                  <h1>
+                    Welcome to the portfolio website of Filip Jerga. Get
+                    informed, collaborate and discover projects I was working on
+                    through the years!
+                  </h1>
+                </div>
+                <Typed
+                className="self-typed"
+                loop
+                typeSpeed={70}
+                backSpeed={70}
+                strings={this.roles}
+                smartBackspace
+                shuffle={false}
+                backDelay={1}
+                fadeOut={false}
+                fadeOutDelay={100}
+                loopCount={0}
+                showCursor
+                cursorChar="|" />
+                <div className="hero-welcome-bio">
+                  <h1>Let's take a look on my work.</h1>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </BaseLayout>
+    );
+  }
+}
 
-        <p className="row date">
-          The date is:&nbsp;{' '}
-          {date ? (
-            <span>
-              <b>{date.date}</b>
-            </span>
-          ) : (
-            <span className="loading"></span>
-          )}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-export default Home;
+export default index;

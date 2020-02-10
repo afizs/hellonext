@@ -1,15 +1,17 @@
 import React from "react";
-import Head from '../components/head';
-import Nav from '../components/nav';
+import BaseLayout from "../components/layouts/BaseLayout";
+import Head from "../components/head";
+import BasePage from "../components/BasePage";
 
 class Blog extends React.Component {
   render() {
     return (
-      <div>
-        <Head title="Blog"/>
-        <Nav />
-        <h1> Blog page </h1>{" "}
-      </div>
+      <BaseLayout>
+        <Head title="Blog" />
+        <BasePage>
+          <h1> Blog page </h1>{" "}
+        </BasePage>
+      </BaseLayout>
     );
   }
 }

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from '../routes'
+import BaseLayout  from "../components/layouts/BaseLayout";
 import Head from '../components/head';
-import Nav from '../components/nav';
+import BasePage from "../components/BasePage";
 
 
 const Portfolios = () => {
@@ -17,9 +18,9 @@ const Portfolios = () => {
       }, []);
 
  return(
-    <div>
+    <BaseLayout>
         <Head title="Portfolio"/>
-        <Nav />
+        <BasePage>
         <div>Portfolios</div>
         <ol>
             {post ? post.map((item, index) => {
@@ -29,7 +30,8 @@ const Portfolios = () => {
                 </Link></li>
             }): <span>Loading..</span>}
         </ol>
-    </div>
+        </BasePage>
+    </BaseLayout>
  )
  
 }
